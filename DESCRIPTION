@@ -1,6 +1,6 @@
 Package: rmdTemplates
 Type: Package
-Title: RMarkdown Templates For Some Reports
+Title: Add skeleton framework for templates to an R package during development.
 Version: 0.1.0
 Author: Michael Nelson
 Maintainer: Michael Nelson <mnels@doh.health.nsw.gov.au>
