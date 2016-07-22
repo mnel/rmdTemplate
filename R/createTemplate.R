@@ -14,7 +14,7 @@ createTemplate <-
            yamlextra = list(),
            titleblockextra = list()) {
     # create the directories
-    templateRoot <- templateDir(name)
+    templateRoot <- file.path('inst','templates')
     templateSkeleton <- file.path(templateRoot, 'skeleton')
     dir.create(templateRoot, recursive = TRUE)
     dir.create(templateSkeleton)
@@ -30,10 +30,10 @@ createTemplate <-
         file = file.path(templateSkeleton, 'skeleton.Rmd'))
   }
 
-
-#' A simple function to create a title block for an rmarkdown template.
+#' Create a title block for an rmarkdown template.
 #'
 #' @param title title defaults to 'Untitled'
+#' @param ... a list of additional options such as output
 #' @export
 makeTitleBlock <- function(title = 'Untitled', ...) {
   titleBlock <- sprintf('-----\n%s\n------\n',

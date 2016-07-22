@@ -2,14 +2,16 @@
 % Please edit documentation in R/createTemplate.R
 \name{makeTitleBlock}
 \alias{makeTitleBlock}
-\title{A simple function to create a title block for an rmarkdown template.}
+\title{Create a title block for an rmarkdown template.}
 \usage{
 makeTitleBlock(title = "Untitled", ...)
 }
 \arguments{
 \item{title}{title defaults to 'Untitled'}
+
+\item{...}{a list of additional options such as output}
 }
 \description{
-A simple function to create a title block for an rmarkdown template.
+Create a title block for an rmarkdown template.
 }
 
