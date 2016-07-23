@@ -6,6 +6,7 @@
 #' @param description a short description of the template
 #' @param yamlextra list of extra details for template.yaml
 #' @param titleblockextra list of extra options for title block in rmd
+#' @author Michael Nelson
 #' @importFrom yaml as.yaml
 #' @export
 createTemplate <-
@@ -14,10 +15,14 @@ createTemplate <-
            yamlextra = list(),
            titleblockextra = list()) {
     # create the directories
-    templateRoot <- file.path('inst','templates')
+    templateRoot <- file.path('inst','templates', name)
     templateSkeleton <- file.path(templateRoot, 'skeleton')
-    dir.create(templateRoot, recursive = TRUE)
-    dir.create(templateSkeleton)
+
+    # but only if the template does not already exist
+    if(dir.exists(templateRoot)){
+      stop("directory ", templateRoot, " already exists")
+    }
+    dir.create(templateSkeleton, recursive = TRUE)
     # template.yaml
     template_yaml <-
       yaml::as.yaml(c(list(
@@ -34,8 +39,34 @@ createTemplate <-
 #'
 #' @param title title defaults to 'Untitled'
 #' @param ... a list of additional options such as output
+#' @return title block as a character string length 1
+#' @author Michael Nelson
+#' @examples
+#' \dontrun{
+#' # create a title block for an HTML document
+#' makeTitleBlock(title = "Something interesting", output = "html_document")
+#' # create a title block with some extra options
+#' makeTitleBlock(title = "Something more interesting",
+#'   output = list(html_document = list(toc = TRUE, fig_caption = TRUE, css = 'styles.css')))
+#' }
 #' @export
 makeTitleBlock <- function(title = 'Untitled', ...) {
-  titleBlock <- sprintf('-----\n%s\n------\n',
+  titleBlock <- sprintf('-----\n%s------\n',
                         yaml::as.yaml(list(title = title, ...)))
+}
+
+#' Add 'inst/template' directory
+#'
+#' Called for side-effect only of creating 'inst/templates' directory where it
+#' does not already exist.
+#'
+#' @param base directory of package (defaults to '.')
+#' @return invisible(NULL)
+#' @author Michael Nelson
+addTemplate <- function(base = '.'){
+  dir <- file.path(base, 'inst', 'templates')
+  if(!dir.create(dir, recursive = TRUE)){
+    stop("Directory: ", dir, " could not be created")
+  }
+  invisible(NULL)
 }

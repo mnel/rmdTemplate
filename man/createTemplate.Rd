@@ -20,4 +20,7 @@ createTemplate(name = "newTemplate", description = "A new template",
 Creates template folder structure according to http://rmarkdown.rstudio.com/developer_document_templates.html.
 This assumes you are working to create an R package
 }
+\author{
+Michael Nelson
+}
 

@@ -11,7 +11,22 @@ makeTitleBlock(title = "Untitled", ...)
 
 \item{...}{a list of additional options such as output}
 }
+\value{
+title block as a character string length 1
+}
 \description{
 Create a title block for an rmarkdown template.
+}
+\examples{
+\dontrun{
+# create a title block for an HTML document
+makeTitleBlock(title = "Something interesting", output = "html_document")
+# create a title block with some extra options
+makeTitleBlock(title = "Something more interesting",
+  output = list(html_document = list(toc = TRUE, fig_caption = TRUE, css = 'styles.css')))
+}
+}
+\author{
+Michael Nelson
 }
 
